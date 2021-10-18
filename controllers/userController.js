@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { validate, errorHandler } = require('../util/common');
+const { errorHandler } = require('../util/common');
 const { stdResponses, cookieOption } = require('../config/config');
 const { Users } = require('../model/user');
 const { config } = require('dotenv');
@@ -33,9 +33,14 @@ exports.loginHandler = (req, res) => {
             return errorHandler(res, {}, stdResponses.badRequest);
 
         // validate inputs
-        const { status, message } = validate({ email, password });
-        res.cookie(APP_CONSTANTS.whoAmI, JSON.stringify({ email, password }), cookieOption);
-        res.status(status).send(message);
+        Users.findOne({ email }, async (err, user) => {
+            if (err || !user)
+                return errorHandler(res, err ?? {}, stdResponses.badRequest);
+            if (!await bcrypt.compare(password, user.password))
+                return errorHandler(res, {}, stdResponses.unauthorized);
+            const { success: { status, message } } = stdResponses;
+            res.status(status).send(message);
+        })
     } catch (err) {
         errorHandler(res, err);
     }
