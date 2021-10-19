@@ -6,6 +6,7 @@ const stdResponses = {
     created: { status: 201, message: 'Registered' },
     deleted: { status: 202, message: 'Deleted' },
     badRequest: { status: 400, message: 'Bad request' },
+    notFound: { status: 404, messsage: 'Not found' },
     unauthorized: { status: 401, message: 'Unauthorized' },
     forbidden: { status: 403, message: 'Forbidden' },
     notFound: { status: 404, message: 'Resource not found!' },
@@ -21,15 +22,12 @@ const routes = {
     register: '/register',
     delete: '/delete',
     getAll: '/get-all',
-    whoAmI: '/who-am-i'
+    isActive: '/is-active'
 };
 
-const cookieOption = {
-    maxAge: 1000 * 60 * 5,
-    httpOnly: true
-};
+const activityTime = 60 * 5; // 5 minutes
 
 exports.defaulPort = defaulPort;
 exports.stdResponses = stdResponses;
 exports.routes = routes;
-exports.cookieOption = cookieOption;
+exports.activityTime = activityTime;

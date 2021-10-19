@@ -1,7 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const cookieParser = require('cookie-parser');
 
 const { APP_CONSTANTS } = require('./constants/constants');
 const { defaulPort, routes } = require('./config/config');
@@ -17,7 +16,6 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cookieParser());
 
 app.use(routes.user, sourceModifier, router);
 

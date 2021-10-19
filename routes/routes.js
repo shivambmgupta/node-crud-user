@@ -5,7 +5,7 @@ const {
     register,
     deleteUser,
     getAllUsers,
-    whoAmI
+    isUserActive
 } = require('../controllers/userController');
 
 const router = express.Router();
@@ -14,6 +14,6 @@ router.post(routes.login, loginHandler);
 router.post(routes.register, register);
 router.post(routes.delete, deleteUser);
 router.get(routes.getAll, getAllUsers);
-router.get(routes.whoAmI, whoAmI);
+router.get(routes.isActive, isUserActive);
 
 exports.router = router;

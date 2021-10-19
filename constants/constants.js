@@ -4,7 +4,13 @@ const APP_CONSTANTS = {
     DB_CONNECTED: 'Connected with the database',
     DB_ERROR: 'Database connection failure',
     DEFAULT_SOURCE: 'Signzy',
-    WHO_AM_I: 'whoAmICookie'
+    FOUND: 'Found'
+};
+
+const ERROR_MESSAGES = {
+    INVALID_REQUEST: 'Invalid request',
+    INVALID_QUERY: 'Invalid Query'
 };
 
 exports.APP_CONSTANTS = APP_CONSTANTS;
+exports.ERROR_MESSAGES = ERROR_MESSAGES;
